@@ -5,3 +5,4 @@
   Rafael Rausch Dias
   Luiz Felipe
   Lucas Gaiga
+  Brenda Taiane
