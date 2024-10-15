@@ -7,3 +7,4 @@
   Lucas Gaiga
   Brenda Taiane
   Leonardo Nasser
+  Pedro Gabriel
