@@ -6,3 +6,4 @@
   Luiz Felipe
   Lucas Gaiga
   Brenda Taiane
+  Leonardo Nasser
