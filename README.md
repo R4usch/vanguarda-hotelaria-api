@@ -3,4 +3,5 @@
 
 # Participantes
   Rafael Rausch Dias
-  Luiz Felipe 
+  Luiz Felipe
+  Lucas Gaiga
