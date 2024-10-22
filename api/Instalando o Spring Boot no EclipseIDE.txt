@@ -1,0 +1,7 @@
+1 - Com o Eclipse IDE aberto, procure na barra da parte superior da tela a partição "help". Ao clicar na mesma, uma lista de opções será aberta, clique em "Eclipse Marketplace".
+2 - Com o Marketplace aberto procure na barra de pesquisa por "Spring Tool Suite" (última versão disponível). 
+3 - Clique em instalar.
+4 - Clique em "Install Now", "Next", aceite os Termos da Licença e "Finish".
+5 - Quando necessário marque a checkbox, e clique em "Trust Selected".
+6 - Espere a instalação ser concluída.
+7 - Reinicie o Eclipse IDE.
