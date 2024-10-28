@@ -1,0 +1,11 @@
+Passo a Passo para conectar o Azure com o Mysql Workbench:
+
+1- Dentro do Mysql Workbench clice no símbolo "+" na guia de Conexões para adicionar uma nova conexão
+2- Insira um nome para a conexão no campo Nome da Conexão.
+3- Selecione Standard (TCP/IP) como Tipo de Conexão.
+4- Insira bd-hotel.mysql.database.azure.com no campo hostname.
+5- Insira Adm_BDjv como nome de usuário e insira a senha "Host123@ç".
+6- Vá para o Guia SSL e atualize o campo "Use SSL" para Require.
+7- No campo "SSL CA file", insira o local do arquivo DigiCertGlobalRootCA.crt.pem
+8- CLique em Testar Conexão para testar.
+9- Se a conexão for bem-sucedida, clique em OK para salvar a conexão.
