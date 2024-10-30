@@ -1,6 +1,6 @@
 # Vanguarda Hotelaria API
 
-# Requisitos
+## Requisitos
   - Spring Boot v4.26.0 RELEASE
   - JavaSE 17
   - Eclipse 4.31.0v20240229-1022
