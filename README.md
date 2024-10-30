@@ -8,6 +8,12 @@
   - Espere a instalação ser concluída.
   - Reinicie o Eclipse IDE.
 
+  OBSERVAÇÂO: O projeto deve ser executado a partir da classe principal "HotelariaApplication", clicando na seta para baixo ao lado do ícone do botão "Run", "Run as..." e selecionando a opção "Spring Boot App". Vale a pena 
+  ressaltar que o código atual do Spring Boot não irá funcionar sem a implementação das Classes requisitadas, isto porque as rotas "PUT" e "POST" recebem dados, atrevés do ".json", e convertem seus atributos em uma
+  variável do tipo da classe mencionada.
+  
+  * Requisitos: Spring Boot -> 4.26.0 RELEASE, Java -> JavaSE-17, Eclipse -> 4.31.0.v20240229-1022. 
+
 # Participantes
   - Rafael Rausch Dias
   - Luiz Felipe
