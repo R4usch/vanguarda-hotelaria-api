@@ -16,6 +16,14 @@
 
   OBSERVAÇÂO: O projeto deve ser executado a partir da classe principal "HotelariaApplication", clicando na seta para baixo ao lado do ícone do botão "Run", "Run as..." e selecionando a opção "Spring Boot App". Vale a pena ressaltar que o código atual do Spring Boot não irá funcionar sem a implementação das Classes requisitadas, isto porque as rotas "PUT" e "POST" recebem dados, atrevés do ".json", e convertem seus atributos em uma variável do tipo da classe mencionada.
 
+## 2. Importar no Eclipse IDE
+  - Clone este repositório
+  - Abra o Eclipse IDE
+  - Entre em File > Import
+  - Selecione Maven > Existing Maven Projects
+  - Clique em Browser e selecione a pasta hotelaria, onde foi clonado o repositorio. Exemplo C:\Users\seu-nome\Documents\Github\vanguarda-hotelaria-api\hotelaria
+  - Clique em Finish
+
 ## Passo a Passo para conectar o Azure com o Mysql Workbench:
 
 - Dentro do Mysql Workbench clice no símbolo "+" na guia de Conexões para adicionar uma nova conexão
