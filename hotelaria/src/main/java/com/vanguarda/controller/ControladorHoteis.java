@@ -1,37 +1,51 @@
 package com.vanguarda.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import jakarta.servlet.http.HttpServletRequest;
+import java.util.List;
+import com.vanguarda.repository.*;
+import com.vanguarda.service.HotelService;
+import com.vanguarda.entity.Hotel;
+
 @RestController
-@RequestMapping("/api/hoteis")
+@RequestMapping("/hoteis")
+@CrossOrigin(origins = "*")
 public class ControladorHoteis {
-
+    
+    @Autowired
+    private HotelService hotelService;
+    
     @GetMapping
-    public String listarHoteis() {
-        return "Lista de Hotéis";
+    public ResponseEntity<List<Hotel>> listarTodos() {
+        return ResponseEntity.ok(hotelService.listarTodos());
     }
-
-//    @PostMapping
-//    public String criarHotel(@RequestBody Hotel hotel) {
-//        return "Hotel criado: " + hotel.getNome() + ", Endereço: " + hotel.getEndereco();
-//    } 
     
     @GetMapping("/{hotelId}")
-    public String obterHotel(@PathVariable Long hotelId) {
-        return "Detalhes do Hotel " + hotelId;
-    }
-
-//    @PutMapping("/{hotelId}")
-//    public String atualizarHotel(@PathVariable Long hotelId, @RequestBody Hotel hotelAtualizado) {
-//        return "Hotel com ID " + hotelId + " atualizado para: " + hotelAtualizado.getNome();
-//    }
-
-    @DeleteMapping("/{hotelId}")
-    public String removerHotel(@PathVariable Long hotelId) {
-        return "Hotel removido: " + hotelId;
+    public ResponseEntity<Hotel> obterPorId(@PathVariable Integer hotelId) {
+        return hotelService.obterPorId(hotelId)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
     
+    @PostMapping
+    public ResponseEntity<Hotel> criar(@RequestBody Hotel hotel) {
+        return ResponseEntity.ok(hotelService.salvar(hotel));
+    }
+    
+    @PutMapping("/{hotelId}")
+    public ResponseEntity<Hotel> atualizar(@PathVariable Integer hotelId, @RequestBody Hotel hotel) {
+        hotel.setIdHotel(hotelId);
+        return ResponseEntity.ok(hotelService.salvar(hotel));
+    }
+    
+    @DeleteMapping("/{hotelId}")
+    public ResponseEntity<Void> remover(@PathVariable Integer hotelId) {
+        hotelService.remover(hotelId);
+        return ResponseEntity.noContent().build();
+    }
 }
+
+
+

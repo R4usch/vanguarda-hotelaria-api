@@ -1,39 +1,54 @@
 package com.vanguarda.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import com.vanguarda.service.QuartoService;
+import com.vanguarda.entity.Quarto;
+import com.vanguarda.repository.*;
+import java.util.List;
 
 @RestController
-@RequestMapping("/api/hoteis/{hotelId}/quartos")
+@RequestMapping("/hoteis/{hotelId}/quartos")
+@CrossOrigin(origins = "*")
 public class ControladorQuartos {
-
+    
+    @Autowired
+    private QuartoService quartoService;
+    
     @GetMapping
-    public String listarQuartos(@PathVariable Long hotelId) {
-        return "Lista de Quartos do Hotel " + hotelId;
+    public ResponseEntity<List<Quarto>> listarTodos(@PathVariable Integer hotelId) {
+        return ResponseEntity.ok(quartoService.listarPorHotel(hotelId));
     }
-
-//    @PostMapping
-//    public String criarQuarto(@PathVariable Long hotelId, @RequestBody Quarto quarto) {
-//        return "Quarto criado no Hotel " + hotelId + ": " + quarto.getNumero();
-//    }
     
     @GetMapping("/disponiveis")
-    public String listarQuartosDisponiveis(@PathVariable Long hotelId) {
-        return "Lista de Quartos Disponíveis do Hotel " + hotelId;
+    public ResponseEntity<List<Quarto>> listarDisponiveis(@PathVariable Integer hotelId) {
+        return ResponseEntity.ok(quartoService.listarDisponiveisPorHotel(hotelId));
     }
-
+    
     @GetMapping("/{quartoId}")
-    public String obterQuarto(@PathVariable Long hotelId, @PathVariable Long quartoId) {
-        return "Detalhes do Quarto " + quartoId + " do Hotel " + hotelId;
+    public ResponseEntity<Quarto> obterPorId(@PathVariable String quartoId) {
+        return quartoService.obterPorId(quartoId)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
-
-//    @PutMapping("/{quartoId}")
-//    public String atualizarQuarto(@PathVariable Long hotelId, @PathVariable Long quartoId, @RequestBody Quarto quartoAtualizado) {
-//        return "Quarto com ID " + quartoId + " no Hotel " + hotelId + " atualizado para: " + quartoAtualizado.getNumero();
-//    }
-
+    
+    @PostMapping
+    public ResponseEntity<Quarto> criar(@PathVariable Integer hotelId, @RequestBody Quarto quarto) {
+        return ResponseEntity.ok(quartoService.salvar(hotelId, quarto));
+    }
+    
+    @PutMapping("/{quartoId}")
+    public ResponseEntity<Quarto> atualizar(@PathVariable Integer hotelId,
+                                          @PathVariable String quartoId,
+                                          @RequestBody Quarto quarto) {
+        quarto.setIdQuarto(quartoId);
+        return ResponseEntity.ok(quartoService.salvar(hotelId, quarto));
+    }
+    
     @DeleteMapping("/{quartoId}")
-    public String removerQuarto(@PathVariable Long hotelId, @PathVariable Long quartoId) {
-        return "Quarto removido: " + quartoId + " do Hotel " + hotelId;
-    }	
-	
+    public ResponseEntity<Void> remover(@PathVariable String quartoId) {
+        quartoService.remover(quartoId);
+        return ResponseEntity.noContent().build();
+    }
 }

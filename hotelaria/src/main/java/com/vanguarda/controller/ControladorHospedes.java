@@ -1,35 +1,51 @@
 package com.vanguarda.controller;
 
-import com.vanguarda.entity.*;
+
+
+import com.vanguarda.entity.Cliente;
+import com.vanguarda.service.ClienteService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @RestController
-@RequestMapping("/api/hoteis/{hotelId}/hospedes")
+@RequestMapping("/hoteis/{hotelId}/clientes")
+@CrossOrigin(origins = "*")
 public class ControladorHospedes {
-
+    
+    @Autowired
+    private ClienteService clienteService;
+    
     @GetMapping
-    public String listarHospedes(@PathVariable Long hotelId) {
-        return "Lista de Hóspedes do Hotel " + hotelId;
-    }
-
-//    @PostMapping
-//    public String criarHospede(@PathVariable Long hotelId, @RequestBody Hospede hospede) {
-//        return "Hóspede criado no Hotel " + hotelId + ": " + hospede.getNome();
-//    }
-
-    @GetMapping("/{hospedeId}")
-    public String obterHospede(@PathVariable Long hotelId, @PathVariable Long hospedeId) {
-        return "Detalhes do Hóspede " + hospedeId + " do Hotel " + hotelId;
-    }
-
-//    @PutMapping("/{hospedeId}")
-//    public String atualizarHospede(@PathVariable Long hotelId, @PathVariable Long hospedeId, @RequestBody Hospede hospedeAtualizado) {
-//        return "Hóspede com ID " + hospedeId + " no Hotel " + hotelId + " atualizado para: " + hospedeAtualizado.getNome();
-//    }
-
-    @DeleteMapping("/{hospedeId}")
-    public String removerHospede(@PathVariable Long hotelId, @PathVariable Long hospedeId) {
-        return "Hóspede removido: " + hospedeId + " do Hotel " + hotelId;
+    public ResponseEntity<List<Cliente>> listarTodos(@PathVariable Integer hotelId) {
+        return ResponseEntity.ok(clienteService.listarPorHotel(hotelId));
     }
     
+    @GetMapping("/{clienteId}")
+    public ResponseEntity<Cliente> obterPorId(@PathVariable String clienteId) {
+        return clienteService.obterPorId(clienteId)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+    
+    @PostMapping
+    public ResponseEntity<Cliente> criar(@PathVariable Integer hotelId, @RequestBody Cliente cliente) {
+        return ResponseEntity.ok(clienteService.salvar(hotelId, cliente));
+    }
+    
+    @PutMapping("/{clienteId}")
+    public ResponseEntity<Cliente> atualizar(@PathVariable Integer hotelId,
+                                           @PathVariable String clienteId,
+                                           @RequestBody Cliente cliente) {
+        cliente.setIdCliente(clienteId);
+        return ResponseEntity.ok(clienteService.atualizar(hotelId, cliente));
+    }
+    
+    @DeleteMapping("/{clienteId}")
+    public ResponseEntity<Void> remover(@PathVariable String clienteId) {
+        clienteService.remover(clienteId);
+        return ResponseEntity.noContent().build();
+    }
 }
+
