@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import com.vanguarda.service.ReservaService;
 import com.vanguarda.entity.Reserva;
 import java.util.List;
-
+import com.vanguarda.*;
 @RestController
 @RequestMapping("/hoteis/{hotelId}/reservas")
 @CrossOrigin(origins = "*")

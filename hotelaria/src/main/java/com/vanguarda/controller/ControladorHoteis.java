@@ -8,7 +8,7 @@ import java.util.List;
 import com.vanguarda.repository.*;
 import com.vanguarda.service.HotelService;
 import com.vanguarda.entity.Hotel;
-
+import com.vanguarda.*;
 @RestController
 @RequestMapping("/hoteis")
 @CrossOrigin(origins = "*")
@@ -19,6 +19,7 @@ public class ControladorHoteis {
     
     @GetMapping
     public ResponseEntity<List<Hotel>> listarTodos() {
+    	System.out.println("Funcionando rota");
         return ResponseEntity.ok(hotelService.listarTodos());
     }
     

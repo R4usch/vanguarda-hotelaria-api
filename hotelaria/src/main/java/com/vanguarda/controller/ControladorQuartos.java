@@ -7,7 +7,7 @@ import com.vanguarda.service.QuartoService;
 import com.vanguarda.entity.Quarto;
 import com.vanguarda.repository.*;
 import java.util.List;
-
+import com.vanguarda.*;
 @RestController
 @RequestMapping("/hoteis/{hotelId}/quartos")
 @CrossOrigin(origins = "*")

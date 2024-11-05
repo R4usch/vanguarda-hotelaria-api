@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
-
+import com.vanguarda.*;
 @RestController
 @RequestMapping("/hoteis/{hotelId}/clientes")
 @CrossOrigin(origins = "*")
