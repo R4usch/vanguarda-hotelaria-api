@@ -4,7 +4,7 @@ CREATE TABLE Cliente (
 );
 
 CREATE TABLE Hotel (
-    idHotel INT PRIMARY KEY,
+    idHotel INT PRIMARY KEY AUTO_INCREMENT,
     Nome VARCHAR(50) NOT NULL,
     Rua VARCHAR(30),
     Bairro VARCHAR(30),
@@ -12,7 +12,7 @@ CREATE TABLE Hotel (
     Estado VARCHAR(30),
     CEP VARCHAR(15)
 );
-
+ALTER TABLE Hotel AUTO_INCREMENT = 0;
 CREATE TABLE Quarto (
     Id_Quarto VARCHAR(45) PRIMARY KEY,
     Hotel_idHotel INT,
