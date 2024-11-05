@@ -96,6 +96,16 @@ CREATE TABLE Reserva (
     FOREIGN KEY (Quarto_Id_Quarto) REFERENCES Quarto(Id_Quarto)
 );
 
+-Dentro da aplicação Spring Boot, acesse src, main, resources e entre no arquivo application.propiets.
+- Adicione o código abaixo:
+
+spring.datasourcer.url =
+jdbc:musql://localrost:3306/nome_escolhido_BancodeDados
+spring.datasource.username=root
+spring.datasource.password=
+spring.datasource.driver-class-name = com.musql.cj.jdbc.Driver
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
 
 # Participantes
   - Rafael Rausch Dias
